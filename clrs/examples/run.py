@@ -30,7 +30,7 @@ import requests
 import tensorflow as tf
 
 
-flags.DEFINE_list('algorithms', ['bfs'], 'Which algorithms to run.')
+flags.DEFINE_list('algorithms', ['floyd_warshall'], 'Which algorithms to run.')
 flags.DEFINE_list('train_lengths', ['4', '7', '11', '13', '16'],
                   'Which training sizes to use. A size of -1 means '
                   'use the benchmark dataset.')
@@ -112,9 +112,9 @@ flags.DEFINE_enum('processor_type', 'triplet_gmpnn',
                    'triplet_gpgn', 'triplet_gpgn_mask', 'triplet_gmpnn'],
                   'Processor type to use as the network P.')
 
-flags.DEFINE_string('checkpoint_path', '/tmp/CLRS30',
+flags.DEFINE_string('checkpoint_path', 'dataset',
                     'Path in which checkpoints are saved.')
-flags.DEFINE_string('dataset_path', '/tmp/CLRS30',
+flags.DEFINE_string('dataset_path', 'dataset',
                     'Path in which dataset is stored.')
 flags.DEFINE_boolean('freeze_processor', False,
                      'Whether to freeze the processor of the model.')
@@ -213,7 +213,7 @@ def make_sampler(length: int,
     num_samples = clrs.CLRS30[split]['num_samples'] * multiplier
     sampler, spec = clrs.build_sampler(
         algorithm,
-        seed=rng.randint(2**32),
+        seed=rng.randint(2**31),
         num_samples=num_samples,
         length=length,
         **sampler_kwargs,
@@ -413,7 +413,7 @@ def main(unused_argv):
   train_lengths = [int(x) for x in FLAGS.train_lengths]
 
   rng = np.random.RandomState(FLAGS.seed)
-  rng_key = jax.random.PRNGKey(rng.randint(2**32))
+  rng_key = jax.random.PRNGKey(rng.randint(2**31))
 
   # Create samplers
   (

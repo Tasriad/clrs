@@ -1,19 +1,58 @@
-# Building and releasing library:
-*.egg-info
-*.pyc
-*.so
-build/
-dist/
+# Python virtual environment
 venv/
+ENV/
+.env/
+.venv/
 
-# Mac OS
+# Dataset directory
+/dataset/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# VSCode settings
+.vscode/
+
+# MacOS
 .DS_Store
 
-# Python tools
-.mypy_cache/
-.pytype/
-.ipynb_checkpoints
+# Windows
+Thumbs.db
 
-# Editors
-.idea
-.vscode
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+
+# Other common ignores
+*.sqlite3
+*.db
