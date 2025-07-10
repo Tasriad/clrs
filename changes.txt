@@ -1,2 +1,3 @@
 1. run.py 2**32 to 2**31
 2. run.py changed path from /temp/CLRS30 to dataset
+3. run.py switched from only bfs to floyd-warshall
